@@ -1,0 +1,96 @@
+:root {
+  --color-black: #32323d;
+  --color-text-primary: #fff;
+  --color-layout-bg: #37075d;
+  --color-sidebar-popup-bg: #411465;
+  --color-sidebar-popup-bg-active: #542c75;
+  --color-navigation-text: #dadada;
+  --color-primary-purple: #ed2b91;
+  --color-border-primary: hsla(0, 0%, 100%, 0.1);
+  --color-alpha-bg: hsla(0, 0%, 100%, 0.1);
+  --color-scroll-thumb-bg: hsla(0, 0%, 100%, 0.3);
+
+  --height-player: 90px;
+  --size-sidebar-large: 240px;
+
+  --img-logo-mp3: url(https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg);
+}
+
+* {
+  box-sizing: inherit;
+  outline: none;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-text-primary);
+}
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-scroll-thumb-bg);
+  border-radius: 2px;
+}
+
+.btn {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.btn.disabled {
+  cursor: none;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.3;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
