@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <main class="root">
+    <div class="root">
         <div class="main-section">
             <aside class="sidebar">
                 <div class="sidebar-wrapper">
@@ -157,37 +157,121 @@
                     </div>
                 </div>
             </aside>
-
-            <div class="main-page">
-                <header class="main-page__header">
-                    <div class="main-page__header-wrapper">
-                        <div class="main-page__header-left">
+            <header id="js-page-header" class="page-header">
+                <div class="page-header-wrapper">
+                    <div class="page-header-left">
+                        <button class="btn disabled">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </button>
+                        <button class="btn disabled">
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </button>
+                        <div class="form-search">
                             <button class="btn">
-                                <i class="fas fa-long-arrow-alt-left"></i>
+                                <i class="fas fa-search"></i>
                             </button>
-                            <button class="btn disabled">
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </button>
-                            <div class="form-search">
-                                <button class="btn">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                                <div class="input-wrapper">
-                                    <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV…">
-                                </div>
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV…">
                             </div>
                         </div>
-                        <div class="main-page__header-right">
-
+                    </div>
+                    <div class="page-header-right">
+                        <div class="btn header-right__item">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="btn header-right__item">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="btn header-right__item">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="btn header-right__item">
+                            <figure>
+                                <img
+                                    src="https://s120-ava-talk.zadn.vn/7/3/0/4/3/120/e660ada4a6e38cddf251c552ef569658.jpg">
+                            </figure>
                         </div>
                     </div>
-                </header>
+                </div>
+            </header>
+            <div id="js-main-page" class="main-page">
+                <main class="main-page-wrapper">
+                    <div class="main-page-section">
+                        <div class="main-page-inner">
+                            <div class="playlist-media-card">
+                                <div class="playlist-media-card__thumbnail">
+                                    <div class="playlist-media-card__img-wrapper">
+                                        <div class="playlist-media-card__img">
+                                        </div>
+                                    </div>
+                                    <div class="opacity">
+                                    </div>
+                                    <div class="playlist-media-card__actions-container">
+                                        <div class="playlist-media-card__actions-inner">
+                                            <button class="btn">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="playlist-media-card__content">
+                                    <div class="playlist-media-card__content-top">
+                                        <h3 class="playlist-media-card__title">
+                                            Nhạc Trẻ Gây Nghiện
+                                        </h3>
+                                        <div class="playlist-media-card__release-date">
+                                            Cập nhật: 21/10/2021
+                                        </div>
+                                        <div class="playlist-media-card__artists">
+                                            <a href="#">
+                                                AMEE
+                                            </a>,
+                                            <a href="#">
+                                                Quân A.P
+                                            </a>,
+                                            <a href="#">
+                                                ERIK
+                                                <i class="fas fa-star"></i>
+                                            </a>,
+                                            <a href="#">
+                                                Jack
+                                            </a>
+                                        </div>
+                                        <div class="playlist-media-card__like">
+                                            551K người yêu thích
+                                        </div>
+                                    </div>
+                                    <div class="playlist-media-card__actions">
+                                        <button class="btn play-button">
+                                            <i class="fas fa-play play-button__play-icon"></i>
+                                            <i class="fas fa-pause  play-button__pause-icon"></i>
+                                            <span class="play-button__play-text">Tiếp tục phát</span>
+                                            <span class="play-button__pause-text">Tạm dừng</span>
+                                        </button>
+                                        <div class="playlist-media-card__btn-group">
+                                            <button class="btn like-button">
+                                                <i class="far fa-heart like-button__unlike-icon"></i>
+                                                <i class="fas fa-heart like-button__like-icon"></i>
+                                            </button>
+                                            <button class="btn more-button">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="playlist-content">
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
-        <div class="player">
+        <div class="player-section">
 
         </div>
-    </main>
+    </div>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
