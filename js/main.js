@@ -1,7 +1,10 @@
-const mainPage = document.getElementById('js-main-page');
-const pageHeader = document.getElementById('js-page-header');
-const playButtons = document.getElementsByClassName('play-button');
-const likeButtons = document.getElementsByClassName('like-button');
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+const mainPage = $('#js-main-page');
+const pageHeader = $('#js-page-header');
+const playButtons = $$('.play-button');
+const likeButtons = $$('.like-button');
 
 mainPage.onscroll = function () {
   toggleHeaderBackgroundColor();
@@ -15,23 +18,21 @@ function toggleHeaderBackgroundColor() {
   }
 }
 
+function handleToggleState(elementClass, toggleClass) {
+  return (e) => {
+    const targetElement = e.target.closest(elementClass);
+    targetElement.classList.toggle(toggleClass);
+  };
+}
+
 Array.from(playButtons).forEach((btn) => {
   btn.addEventListener(
     'click',
-    handleToggleButtonState('.play-button', 'is-playing')
+    handleToggleState('.play-button', 'is-playing')
   );
+  btn.addEventListener('click', handleToggleState('.song-item', 'is-active'));
 });
 
 Array.from(likeButtons).forEach((btn) => {
-  btn.addEventListener(
-    'click',
-    handleToggleButtonState('.like-button', 'is-liked')
-  );
+  btn.addEventListener('click', handleToggleState('.like-button', 'is-liked'));
 });
-
-function handleToggleButtonState(btnClass, toggleClass) {
-  return (e) => {
-    const btn = e.target.closest(btnClass);
-    btn.classList.toggle(toggleClass);
-  };
-}
