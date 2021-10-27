@@ -3,6 +3,8 @@ const $$ = document.querySelectorAll.bind(document);
 
 const mainPage = $('#js-main-page');
 const pageHeader = $('#js-page-header');
+const randomButton = $('#random-button');
+const replayButton = $('#replay-button');
 const playButtons = $$('.play-button');
 const likeButtons = $$('.like-button');
 
@@ -21,7 +23,9 @@ function toggleHeaderBackgroundColor() {
 function handleToggleState(elementClass, toggleClass) {
   return (e) => {
     const targetElement = e.target.closest(elementClass);
-    targetElement.classList.toggle(toggleClass);
+    if (targetElement) {
+      targetElement.classList.toggle(toggleClass);
+    }
   };
 }
 
@@ -36,3 +40,13 @@ Array.from(playButtons).forEach((btn) => {
 Array.from(likeButtons).forEach((btn) => {
   btn.addEventListener('click', handleToggleState('.like-button', 'is-liked'));
 });
+
+randomButton.addEventListener(
+  'click',
+  handleToggleState('.random-button', 'is-active')
+);
+
+replayButton.addEventListener(
+  'click',
+  handleToggleState('.replay-button', 'is-active')
+);

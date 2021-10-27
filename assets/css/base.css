@@ -1,6 +1,8 @@
 :root {
   --color-black: #32323d;
   --color-text-primary: #fff;
+  --color-player-text: #fff;
+  --color-progress-bar-active-bg: #fff;
   --color-search-text: #eee;
   --color-layout-bg: #37075d;
   --color-sidebar-popup-bg: #411465;
@@ -15,8 +17,10 @@
   --color-border-player: hsla(0, 0%, 100%, 0.1);
   --color-border-box: hsla(0, 0%, 100%, 0.2);
   --color-scroll-thumb-bg: hsla(0, 0%, 100%, 0.3);
+  --color-progress-bar-player-bg: hsla(0, 0%, 100%, 0.3);
   --color-text-secondary: hsla(0, 0%, 100%, 0.5);
   --color-song-item-action: hsla(0, 0%, 100%, 0.5);
+  --color-thumbnail-player: hsla(0, 0%, 100%, 0.8);
   --color-player-bg: rgba(0, 0, 0, 0.2);
   --color-dark-alpha-50: rgba(0, 0, 0, 0.5);
 
