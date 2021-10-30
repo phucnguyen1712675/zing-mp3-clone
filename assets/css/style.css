@@ -234,7 +234,6 @@
 .page-header-right .header-right__item,
 .playlist-media-card__btn-group .btn,
 .song-item:hover,
-.song-item.is-active,
 .button-wrapper button:hover,
 .control-item-actions button:not(.play-button):hover {
   background-color: var(--color-alpha-bg);
@@ -356,6 +355,7 @@
   flex: 1;
   min-height: 100%;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .main-page:hover {
@@ -643,6 +643,10 @@
 .song-item:hover,
 .song-item.is-active {
   border-radius: 4px;
+}
+
+.song-item.is-active {
+  background-color: var(--color-select-bg);
 }
 
 .song-list-header {

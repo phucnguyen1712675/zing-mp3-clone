@@ -1,12 +1,18 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const PlAYER_STORAGE_KEY = 'ZING_MP3_PLAYER';
+
 const mainPage = $('#js-main-page');
 const pageHeader = $('#js-page-header');
 const randomButton = $('#random-button');
 const replayButton = $('#replay-button');
 const audio = $('#audio');
 const progress = $('#progress-song');
+const btnRandom = $('#random-button');
+const btnPrev = $('#prev-button');
+const btnNext = $('#next-button');
+const btnReplay = $('#replay-button');
 const songListContent = $('.song-list-content');
 const playerControlsThumbnail = $('.player-controls-left .media-img');
 const playerControlsSongTitle = $('.player-controls-left .song-title');
@@ -18,39 +24,10 @@ const bigPlayButtons = $$(
 );
 const likeButtons = $$('.like-button');
 
-const playBtnArr = Array.from(bigPlayButtons);
+const arrBigPlayBtn = Array.from(bigPlayButtons);
 const cdThumbArr = Array.from(cdThumbs);
 
-// function handleToggleState(elementClass, toggleClass) {
-//   return (e) => {
-//     const targetElement = e.target.closest(elementClass);
-//     targetElement && targetElement.classList.toggle(toggleClass);
-//   };
-// }
-
-// Array.from(bigPlayButtons).forEach((btn) => {
-//   btn.addEventListener(
-//     'click',
-//     handleToggleState('.play-button', 'is-playing')
-//   );
-//   btn.addEventListener('click', handleToggleState('.song-item', 'is-active'));
-// });
-
-// Array.from(likeButtons).forEach((btn) => {
-//   btn.addEventListener('click', handleToggleState('.like-button', 'is-liked'));
-// });
-
-// randomButton.addEventListener(
-//   'click',
-//   handleToggleState('.random-button', 'is-active')
-// );
-
-// replayButton.addEventListener(
-//   'click',
-//   handleToggleState('.replay-button', 'is-active')
-// );
-
-let toHHMMSS = (secs) => {
+function toHHMMSS(secs) {
   let sec_num = parseInt(secs, 10);
   let hours = Math.floor(sec_num / 3600);
   let minutes = Math.floor(sec_num / 60) % 60;
@@ -60,11 +37,14 @@ let toHHMMSS = (secs) => {
     .map((v) => (v < 10 ? '0' + v : v))
     .filter((v, i) => v !== '00' || i > 0)
     .join(':');
-};
+}
 
 const app = {
   currentIndex: 0,
   isPlaying: false,
+  isRandom: false,
+  isReplay: false,
+  config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) ?? {},
   songs: [
     {
       id: 1,
@@ -157,6 +137,10 @@ const app = {
       duration: 255,
     },
   ],
+  setConfig(key, value) {
+    this.config[key] = value;
+    localStorage.setItem(PlAYER_STORAGE_KEY, JSON.stringify(this.config));
+  },
   renderSingers: (song) => {
     if (song.singers.length > 1) {
       return song.singers.map((singer) => `<a>${singer}</a>`).join(', ');
@@ -166,14 +150,18 @@ const app = {
   },
   render() {
     const htmls = this.songs.map(
-      (song) => `
+      (song, index) => `
     <div class="select-item">
-      <div class="song-item media-item">
+      <div class="song-item media-item ${
+        this.currentIndex === index ? 'is-active' : ''
+      }" data-index="${index}">
         <div class="song-item-left-content">
             <div class="song-item-left-content__prefix">
                 <i class="fas fa-music"></i>
             </div>
-            <div class="song-item-left-content__thumbnail play-button">
+            <div class="song-item-left-content__thumbnail play-button ${
+              this.currentIndex === index && !audio.paused ? 'is-playing' : ''
+            }">
                 <div class="media-img-wrapper">
                     <div class="media-img is-40x40"
                         style="background-image: url('${song.image}')">
@@ -238,7 +226,6 @@ const app = {
   },
   handleEvents() {
     const _this = this;
-    let arrPlayerControlsThumbnailAnimate = [];
 
     // Khi scroll xuống
     mainPage.onscroll = function () {
@@ -249,20 +236,22 @@ const app = {
       }
     };
 
-    // Xử lý thumbnail quay
-    cdThumbArr.forEach((thumb) => {
-      const playerControlsThumbnailAnimate = thumb.animate(
-        [{ transform: 'rotate(360deg)' }],
-        {
-          duration: 12000, // 12s
-          iterations: Infinity,
-        }
-      );
-      playerControlsThumbnailAnimate.pause();
-      arrPlayerControlsThumbnailAnimate.push(playerControlsThumbnailAnimate);
+    const arrThumbAnimate = cdThumbArr.map((thumb) => {
+      // Xử lý thumbnail xoay
+      const thumbAnimate = thumb.animate([{ transform: 'rotate(360deg)' }], {
+        duration: 12000, // 12s
+        iterations: Infinity,
+        delay: 1000,
+      });
+      thumbAnimate.pause();
+
+      return {
+        thumb,
+        thumbAnimate,
+      };
     });
 
-    playBtnArr.forEach((btn) => {
+    arrBigPlayBtn.forEach((btn) => {
       // Khi click play
       btn.onclick = function () {
         if (_this.isPlaying) {
@@ -270,33 +259,40 @@ const app = {
         } else {
           audio.play();
         }
+        _this.render();
       };
     });
 
     // Khi song play
     audio.onplay = function () {
       _this.isPlaying = true;
-      playBtnArr.forEach((btn) => {
+      arrBigPlayBtn.forEach((btn) => {
         btn.classList.add('is-playing');
 
         if (btn.closest('.playlist-media-card__thumbnail')) {
           btn.classList.add('rotate');
         }
       });
-      arrPlayerControlsThumbnailAnimate.forEach((animate) => animate.play());
+      arrThumbAnimate.forEach(({ thumbAnimate }) => thumbAnimate.play());
     };
 
     // Khi song pause
     audio.onpause = function () {
       _this.isPlaying = false;
-      playBtnArr.forEach((btn) => {
+      arrBigPlayBtn.forEach((btn) => {
         btn.classList.remove('is-playing');
 
         if (btn.closest('.playlist-media-card__thumbnail')) {
           btn.classList.remove('rotate');
         }
       });
-      arrPlayerControlsThumbnailAnimate.forEach((animate) => animate.pause());
+      arrThumbAnimate.forEach(({ thumb, thumbAnimate }) => {
+        if (thumb.closest('.playlist-media-card__thumbnail')) {
+          thumbAnimate.cancel();
+        } else {
+          thumbAnimate.pause();
+        }
+      });
     };
 
     // Khi tiến độ bài hát thay đổi
@@ -314,6 +310,96 @@ const app = {
       const seekTime = (audio.duration / 100) * e.target.value;
       audio.currentTime = seekTime;
     };
+
+    // Khi prev bài hát
+    btnPrev.onclick = function () {
+      if (_this.isRandom) {
+        _this.playRandomSong();
+      } else {
+        _this.prevSong();
+      }
+      audio.play();
+      _this.render();
+      _this.scrollToActiveSong();
+    };
+
+    // Khi next bài hát
+    btnNext.onclick = function () {
+      if (_this.isRandom) {
+        _this.playRandomSong();
+      } else {
+        _this.nextSong();
+      }
+      audio.play();
+      _this.render();
+      _this.scrollToActiveSong();
+    };
+
+    // Random bài hát
+    btnRandom.onclick = function () {
+      _this.isRandom = !_this.isRandom;
+      _this.setConfig('isRandom', _this.isRandom);
+      btnRandom.classList.toggle('is-active', _this.isRandom);
+    };
+
+    // Replay bài hát
+    btnReplay.onclick = function () {
+      _this.isReplay = !_this.isReplay;
+      _this.setConfig('isReplay', _this.isReplay);
+      btnReplay.classList.toggle('is-active', _this.isReplay);
+    };
+
+    // Xử lý khi audio end
+    audio.onended = function () {
+      if (_this.isReplay) {
+        audio.play();
+      } else {
+        btnNext.click();
+      }
+    };
+
+    // Khi click vào song list
+    songListContent.onclick = function (e) {
+      const targetElement = e.target;
+      const songNode = targetElement.closest('.song-item:not(.is-active)');
+
+      // Handle when clicking on the inactive song
+      if (songNode) {
+        _this.currentIndex = Number(songNode.dataset.index);
+        _this.loadCurrentSong();
+        audio.play();
+      } else {
+        // Is active song
+        if (!audio.paused) {
+          audio.pause();
+        } else {
+          audio.play();
+        }
+      }
+
+      _this.render();
+
+      // // Handle when clicking on the song option
+      // if (e.target.closest('.more-button')) {
+      // }
+    };
+  },
+  scrollToActiveSong() {
+    if (this.currentIndex !== 0) {
+      setTimeout(() => {
+        $('.song-item.is-active').scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      }, 300);
+    } else {
+      mainPage.scrollTop = 0;
+    }
+  },
+  loadConfig() {
+    this.currentIndex = this.config.currentIndex;
+    this.isRandom = this.config.isRandom;
+    this.isReplay = this.config.isReplay;
   },
   loadCurrentSong() {
     playerControlsThumbnail.style.backgroundImage = `url('${this.currentSong.image}')`;
@@ -323,19 +409,56 @@ const app = {
       this.currentSong.duration
     );
     audio.src = this.currentSong.path;
+    this.setConfig('currentIndex', this.currentIndex);
+  },
+  prevSong() {
+    this.currentIndex--;
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.songs.length - 1;
+    }
+
+    this.loadCurrentSong();
+  },
+  nextSong() {
+    this.currentIndex++;
+    if (this.currentIndex >= this.songs.length) {
+      this.currentIndex = 0;
+    }
+
+    this.loadCurrentSong();
+  },
+  playRandomSong() {
+    let randomIdx;
+
+    do {
+      randomIdx = Math.floor(Math.random() * this.songs.length);
+    } while (randomIdx === this.currentIndex);
+
+    this.currentIndex = randomIdx;
+
+    this.loadCurrentSong();
   },
   start() {
+    // Gán cấu hình config
+    this.loadConfig();
+
     // Định nghĩa các thuộc tính cho object
     this.defineProperties();
-
-    // Lắng nghe, xử lý các sự kiện
-    this.handleEvents();
 
     // Tải thông tin bài hát đầu tiên khi chạy ứng dụng
     this.loadCurrentSong();
 
     // Render playlist
     this.render();
+
+    // Scroll to active song
+    this.scrollToActiveSong();
+
+    btnRandom.classList.toggle('is-active', this.isRandom);
+    btnReplay.classList.toggle('is-active', this.isReplay);
+
+    // Lắng nghe, xử lý các sự kiện
+    this.handleEvents();
   },
 };
 
