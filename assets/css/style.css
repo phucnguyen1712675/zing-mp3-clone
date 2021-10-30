@@ -21,7 +21,7 @@
 .sidebar {
   width: var(--size-sidebar-large);
   height: calc(100vh - var(--height-player));
-  background-color: var(--color-sidebar-popup-bg);
+  background-color: var(--color-sidebar-bg);
 }
 
 .sidebar .sidebar-wrapper,
@@ -68,7 +68,8 @@
 .sidebar .sidebar-brand .app-logo {
   width: 120px;
   height: 40px;
-  background: var(--img-logo-mp3) 50% / contain no-repeat;
+  background: url(https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg)
+    50% / contain no-repeat;
   cursor: pointer;
 }
 
@@ -252,6 +253,11 @@
   padding: 0 28px;
 }
 
+.expanded-btn-wrapper {
+  /* height: 55px; */
+  display: none;
+}
+
 .page-header {
   position: fixed;
   left: var(--size-sidebar-large);
@@ -403,7 +409,6 @@
 
 .playlist-media-card__thumbnail.rotate {
   border-radius: 50%;
-  /* transition: border-radius 2s ease-out; */
 }
 
 .media-img-wrapper {
@@ -437,7 +442,7 @@
   background-image: url('https://photo-resize-zmp3.zadn.vn/w320_r1x1_jpeg/cover/7/0/2/e/702e9f783592e8d59f38dcaebc4a3a09.jpg');
 }
 
-.playlist-media-card__thumbnail:hover .media-img {
+.playlist-media-card__thumbnail:not(.rotate):hover .media-img {
   transform: scale(1.1) translateZ(0);
 }
 
@@ -468,6 +473,7 @@
   visibility: hidden;
 }
 
+.expanded-btn-wrapper,
 .media-actions-inner,
 .media-actions-container .btn,
 .song-item-left-content__prefix,
@@ -572,14 +578,6 @@
 .play-button.is-playing .play-button__pause-text,
 .media-item.is-playing .pause-icon {
   display: inline-block;
-}
-
-.play-button i {
-  font-size: 1.6rem;
-}
-
-.playlist-media-card__thumbnail.play-button .play-icon {
-  margin-left: 5px;
 }
 
 .playlist-media-card__actions .play-button span {

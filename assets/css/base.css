@@ -5,12 +5,13 @@
   --color-progress-bar-active-bg: #fff;
   --color-search-text: #eee;
   --color-layout-bg: #37075d;
-  --color-sidebar-popup-bg: #411465;
+  --color-sidebar-popup-bg: #572f90;
   --color-sidebar-popup-bg-active: #542c75;
   --color-navigation-text: #dadada;
   --color-primary-purple: #ed2b91;
   --color-setting-icon-text: #d8d8d8;
   --color-link-text-hover: #fe63da;
+  --color-sidebar-bg: hsla(0, 0%, 100%, 0.05);
   --color-border-primary: hsla(0, 0%, 100%, 0.1);
   --color-alpha-bg: hsla(0, 0%, 100%, 0.1);
   --color-loading-bg: hsla(0, 0%, 100%, 0.1);
@@ -31,8 +32,6 @@
   --height-player: 90px;
   --size-sidebar-large: 240px;
   --padding-section: 4vw;
-
-  --img-logo-mp3: url(https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg);
 }
 
 * {

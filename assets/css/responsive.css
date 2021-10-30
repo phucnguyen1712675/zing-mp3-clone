@@ -1,0 +1,111 @@
+/* Tablet */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 70px;
+    background-color: var(--color-sidebar-popup-bg);
+    transition: width 0.3s ease-out;
+  }
+
+  .sidebar .sidebar-brand {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .sidebar .sidebar-brand .app-logo {
+    --size-img: 45px;
+    width: var(--size-img);
+    height: var(--size-img);
+    background-image: url('https://zjs.zadn.vn/zmp3-desktop/releases/v1.4.8/static/media/icon_zing_mp3_60.f6b51045.svg');
+  }
+
+  .navbar-menu .navbar-item {
+    border-left: none;
+  }
+
+  .navbar-menu .navbar-item a {
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-menu .navbar-item i {
+    margin-right: 0;
+  }
+
+  .navbar-menu .navbar-item span,
+  .navbar-menu .navbar-item figure,
+  .sidebar .scroll-sidebar .vip-banner-sidebar,
+  .navbar-my-music .navbar-my-music__title,
+  .add-playlist-sidebar {
+    display: none;
+  }
+
+  .sidebar .scroll-sidebar-wrapper:hover .scroll-sidebar {
+    margin-right: -4px;
+  }
+
+  .expanded-btn-wrapper {
+    display: block;
+  }
+
+  .page-header {
+    left: 70px;
+  }
+}
+
+/* PC medium resolution */
+@media (max-width: 1199px) {
+  .main-page-inner {
+    flex-direction: column;
+  }
+
+  .playlist-media-card {
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    align-self: stretch;
+    padding: 0 0 30px;
+  }
+
+  .playlist-media-card__thumbnail {
+    margin-right: 20px;
+  }
+
+  .playlist-media-card__thumbnail .media-img-wrapper {
+    --size-img: 200px;
+    width: var(--size-img);
+    height: var(--size-img);
+  }
+
+  .playlist-media-card__content-top {
+    text-align: left;
+  }
+
+  .playlist-media-card__content {
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+
+  .playlist-media-card__actions {
+    flex-direction: row;
+  }
+
+  .playlist-media-card__actions .play-button {
+    margin-bottom: 0;
+  }
+
+  .playlist-content {
+    padding-left: 0;
+  }
+
+  .playlist-content__description {
+    display: none;
+  }
+
+  .song-list-center,
+  .song-item-center-content {
+    visibility: hidden;
+  }
+}
