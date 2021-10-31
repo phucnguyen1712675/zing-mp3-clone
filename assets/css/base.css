@@ -31,7 +31,9 @@
   --height-header: 70px;
   --height-player: 90px;
   --size-sidebar-large: 240px;
-  --padding-section: 4vw;
+  --size-sidebar-medium-collapsed: 70px;
+  --padding-section-large: 4vw;
+  --padding-section-medium: 5vw;
 }
 
 * {
@@ -117,6 +119,7 @@ button {
 input::placeholder {
   font-size: 1.4rem;
   color: var(--color-text-primary);
+  font-weight: 300;
 }
 
 h1,

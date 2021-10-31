@@ -3,6 +3,8 @@ const $$ = document.querySelectorAll.bind(document);
 
 const PlAYER_STORAGE_KEY = 'ZING_MP3_PLAYER';
 
+const sidebar = $('#sidebar');
+const expandedSidebarButton = $('#expanded-sidebar-button');
 const mainPage = $('#js-main-page');
 const pageHeader = $('#js-page-header');
 const randomButton = $('#random-button');
@@ -17,6 +19,7 @@ const songListContent = $('.song-list-content');
 const playerControlsThumbnail = $('.player-controls-left .media-img');
 const playerControlsSongTitle = $('.player-controls-left .song-title');
 const playerControlsSongSubTitle = $('.player-controls-left .song-subtitle');
+const playerControlsSongCurrentTime = $('.player-controls-center .time.left');
 const playerControlsSongDuration = $('.player-controls-center .time.right');
 const cdThumbs = $$('.media-img');
 const bigPlayButtons = $$(
@@ -26,6 +29,10 @@ const likeButtons = $$('.like-button');
 
 const arrBigPlayBtn = Array.from(bigPlayButtons);
 const cdThumbArr = Array.from(cdThumbs);
+
+expandedSidebarButton.onclick = function () {
+  sidebar.classList.toggle('is-expanded');
+};
 
 function toHHMMSS(secs) {
   let sec_num = parseInt(secs, 10);
@@ -41,6 +48,7 @@ function toHHMMSS(secs) {
 
 const app = {
   currentIndex: 0,
+  songCurrentTime: 0,
   isPlaying: false,
   isRandom: false,
   isReplay: false,
@@ -179,7 +187,7 @@ const app = {
                 </div>
             </div>
             <div class="song-info">
-                <div class="song-title-wrapper">
+                <div class="song-title-inner">
                     <span class="song-title">
                         ${song.name}
                     </span>
@@ -223,6 +231,24 @@ const app = {
     Object.defineProperty(this, 'currentSong', {
       get: () => this.songs[this.currentIndex],
     });
+  },
+  updateSongProgressValue() {
+    const songDuration = !isNaN(audio.duration)
+      ? audio.duration
+      : this.songs[this.currentIndex].duration;
+
+    const progressPercent = this.songCurrentTime
+      ? Math.floor((this.songCurrentTime / songDuration) * 100)
+      : 0;
+
+    progress.value = progressPercent;
+    progress.style.background = `linear-gradient(
+        to right,
+        #fff 0%,
+        #fff ${progressPercent}%,
+        var(--color-progress-bar-player-bg) ${progressPercent}%,
+        var(--color-progress-bar-player-bg) 100%
+      )`;
   },
   handleEvents() {
     const _this = this;
@@ -298,10 +324,14 @@ const app = {
     // Khi tiến độ bài hát thay đổi
     audio.ontimeupdate = function () {
       if (audio.duration) {
-        const progressPercent = Math.floor(
-          (audio.currentTime / audio.duration) * 100
+        _this.songCurrentTime = audio.currentTime;
+        _this.setConfig('songCurrentTime', _this.songCurrentTime);
+
+        playerControlsSongCurrentTime.textContent = toHHMMSS(
+          _this.songCurrentTime
         );
-        progress.value = progressPercent;
+
+        _this.updateSongProgressValue();
       }
     };
 
@@ -366,6 +396,7 @@ const app = {
       // Handle when clicking on the inactive song
       if (songNode) {
         _this.currentIndex = Number(songNode.dataset.index);
+        _this.setConfig('currentIndex', _this.currentIndex);
         _this.loadCurrentSong();
         audio.play();
       } else {
@@ -398,6 +429,7 @@ const app = {
   },
   loadConfig() {
     this.currentIndex = this.config.currentIndex;
+    this.songCurrentTime = this.config.songCurrentTime;
     this.isRandom = this.config.isRandom;
     this.isReplay = this.config.isReplay;
   },
@@ -405,18 +437,24 @@ const app = {
     playerControlsThumbnail.style.backgroundImage = `url('${this.currentSong.image}')`;
     playerControlsSongTitle.textContent = this.currentSong.name;
     playerControlsSongSubTitle.innerHTML = this.renderSingers(this.currentSong);
+    this.songCurrentTime &&
+      (playerControlsSongCurrentTime.textContent = toHHMMSS(
+        this.songCurrentTime
+      ));
     playerControlsSongDuration.textContent = toHHMMSS(
       this.currentSong.duration
     );
     audio.src = this.currentSong.path;
-    this.setConfig('currentIndex', this.currentIndex);
   },
   prevSong() {
     this.currentIndex--;
     if (this.currentIndex < 0) {
       this.currentIndex = this.songs.length - 1;
     }
+    this.songCurrentTime = 0;
 
+    this.setConfig('currentIndex', this.currentIndex);
+    this.setConfig('songCurrentTime', this.songCurrentTime);
     this.loadCurrentSong();
   },
   nextSong() {
@@ -424,7 +462,10 @@ const app = {
     if (this.currentIndex >= this.songs.length) {
       this.currentIndex = 0;
     }
+    this.songCurrentTime = 0;
 
+    this.setConfig('currentIndex', this.currentIndex);
+    this.setConfig('songCurrentTime', this.songCurrentTime);
     this.loadCurrentSong();
   },
   playRandomSong() {
@@ -435,7 +476,10 @@ const app = {
     } while (randomIdx === this.currentIndex);
 
     this.currentIndex = randomIdx;
+    this.songCurrentTime = 0;
 
+    this.setConfig('currentIndex', this.currentIndex);
+    this.setConfig('songCurrentTime', this.songCurrentTime);
     this.loadCurrentSong();
   },
   start() {
@@ -448,11 +492,15 @@ const app = {
     // Tải thông tin bài hát đầu tiên khi chạy ứng dụng
     this.loadCurrentSong();
 
+    this.updateSongProgressValue();
+
     // Render playlist
     this.render();
 
     // Scroll to active song
     this.scrollToActiveSong();
+
+    audio.currentTime = this.songCurrentTime;
 
     btnRandom.classList.toggle('is-active', this.isRandom);
     btnReplay.classList.toggle('is-active', this.isReplay);

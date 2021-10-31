@@ -1,43 +1,144 @@
+/* Mobile */
+@media (max-width: 739px) {
+  .sidebar,
+  .page-header,
+  .playlist-media-card {
+    display: none;
+  }
+
+  .playlist-content {
+    order: 2;
+  }
+
+  .player-controls {
+    order: 1;
+  }
+
+  .player-controls__container {
+    flex-direction: column;
+  }
+}
+
+/* Mobile */
+@media (min-width: 740px) {
+  .main-section {
+    display: flex;
+    height: calc(100vh - var(--height-player));
+  }
+
+  .main-page-wrapper {
+    padding: 0 var(--padding-section-large);
+    height: calc(100% - var(--height-header));
+  }
+
+  .main-page-section {
+    margin-top: var(--height-header);
+    padding-top: 40px;
+  }
+
+  .playlist-media-card__thumbnail {
+    box-shadow: 0 5px 8px 0 rgb(0 0 0 / 20%);
+  }
+
+  .player-controls,
+  .player-controls__container { 
+    height: var(--height-player);
+  }
+
+  .player-controls {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--color-layout-bg);
+    user-select: none;
+  }
+
+  .player-controls__container {
+    min-width: 768px;
+    padding: 0 20px;
+    border-top: 1px solid var(--color-border-player);
+    background-image: url('https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/theme-player/zma.png');
+    background-color: var(--color-player-bg);
+    background-size: 1920px 100%;
+    background-position: 50%;
+    background-repeat: repeat-x;
+    align-items: center;
+  }
+
+  .player-controls-center {
+    max-width: 40vw;
+  }
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
   .sidebar {
-    width: 70px;
+    position: fixed;
+    left: 0;
+    top: 0;
     background-color: var(--color-sidebar-popup-bg);
     transition: width 0.3s ease-out;
+    z-index: 100;
   }
 
-  .sidebar .sidebar-brand {
+  .sidebar.is-expanded {
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 30%);
+  }
+
+  .sidebar:not(.is-expanded) {
+    width: var(--size-sidebar-medium-collapsed);
+  }
+
+  .sidebar:not(.is-expanded) .sidebar-brand {
     padding: 0;
     justify-content: center;
   }
 
-  .sidebar .sidebar-brand .app-logo {
+  .sidebar:not(.is-expanded) .sidebar-brand .app-logo {
     --size-img: 45px;
     width: var(--size-img);
     height: var(--size-img);
     background-image: url('https://zjs.zadn.vn/zmp3-desktop/releases/v1.4.8/static/media/icon_zing_mp3_60.f6b51045.svg');
   }
 
+  .sidebar.is-expanded .navbar-menu {
+    margin-bottom: 15px;
+  }
+
   .navbar-menu .navbar-item {
     border-left: none;
   }
 
-  .navbar-menu .navbar-item a {
+  .sidebar.is-expanded .navbar-menu .navbar-item a {
+    padding: 10px 25px;
+  }
+
+  .sidebar:not(.is-expanded) .navbar-menu .navbar-item a {
     padding: 15px 0;
     display: flex;
     justify-content: center;
   }
 
-  .navbar-menu .navbar-item i {
+  .sidebar:not(.is-expanded) .navbar-menu .navbar-item i {
     margin-right: 0;
   }
 
-  .navbar-menu .navbar-item span,
+  .sidebar:not(.is-expanded) .navbar-menu .navbar-item span,
   .navbar-menu .navbar-item figure,
   .sidebar .scroll-sidebar .vip-banner-sidebar,
-  .navbar-my-music .navbar-my-music__title,
-  .add-playlist-sidebar {
+  .sidebar:not(.is-expanded) .navbar-my-music .navbar-my-music__title,
+  .add-playlist-sidebar,
+  .sidebar.is-expanded .expanded-button .chevron-right-icon,
+  .page-header-right .upload-button,
+  .player-controls-left__button-group {
     display: none;
+  }
+
+  .sidebar .navbar-my-music .navbar-menu .navbar-item a {
+    padding: 8px 25px;
   }
 
   .sidebar .scroll-sidebar-wrapper:hover .scroll-sidebar {
@@ -45,11 +146,57 @@
   }
 
   .expanded-btn-wrapper {
-    display: block;
+    display: flex;
+    justify-content: center;
+    padding: 7px 0 8px;
+  }
+
+  .sidebar.is-expanded .expanded-btn-wrapper {
+    justify-content: flex-end;
+  }
+
+  .expanded-btn-wrapper .expanded-button {
+    --size-button: 40px;
+    width: var(--size-button);
+    height: var(--size-button);
+    background-color: var(--color-alpha-bg);
+    border-radius: 50%;
+  }
+
+  .sidebar.is-expanded .expanded-btn-wrapper .expanded-button {
+    margin-right: 15px;
+  }
+
+  .sidebar.is-expanded .expanded-button .chevron-left-icon {
+    display: inline-block;
   }
 
   .page-header {
-    left: 70px;
+    left: var(--size-sidebar-medium-collapsed);
+  }
+
+  .main-page-wrapper {
+    padding: 0 var(--padding-section-medium);
+  }
+
+  .playlist-media-card__actions .play-button {
+    margin-right: 10px;
+  }
+
+  .song-item-left-content {
+    width: 70%;
+  }
+}
+
+@media (min-width: 740px) and (max-width: 1024px) {
+  .main-page {
+    margin-left: var(--size-sidebar-medium-collapsed);
+  }
+}
+
+@media (max-width: 1175px) {
+  .player-controls-left__container .song-info {
+    max-width: 155px;
   }
 }
 
@@ -59,23 +206,12 @@
     flex-direction: column;
   }
 
-  .playlist-media-card {
+  /* .playlist-media-card {
     position: relative;
     top: 0;
-    flex-direction: row;
     align-self: stretch;
     padding: 0 0 30px;
-  }
-
-  .playlist-media-card__thumbnail {
-    margin-right: 20px;
-  }
-
-  .playlist-media-card__thumbnail .media-img-wrapper {
-    --size-img: 200px;
-    width: var(--size-img);
-    height: var(--size-img);
-  }
+  } */
 
   .playlist-media-card__content-top {
     text-align: left;
@@ -107,5 +243,34 @@
   .song-list-center,
   .song-item-center-content {
     visibility: hidden;
+  }
+}
+
+@media (min-width: 740px) and (max-width: 1199px) {
+  .playlist-media-card {
+    flex-direction: row;
+  }
+
+  .playlist-media-card__thumbnail {
+    margin-right: 20px;
+  }
+
+  .playlist-media-card__thumbnail .media-img-wrapper {
+    --size-img: 200px;
+    width: var(--size-img);
+    height: var(--size-img);
+  }
+}
+
+@media (min-width: 1200px) {
+  .playlist-media-card {
+    position: sticky;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    top: calc(var(--height-header) + 40px);
+    align-self: flex-start;
+    height: auto;
   }
 }
