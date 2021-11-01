@@ -46,13 +46,21 @@ function toHHMMSS(secs) {
     .join(':');
 }
 
+const DEFAULT_CONFIG = {
+  currentIndex: 0,
+  songCurrentTime: 0,
+  isRandom: false,
+  isReplay: false,
+};
+
 const app = {
   currentIndex: 0,
   songCurrentTime: 0,
   isPlaying: false,
   isRandom: false,
   isReplay: false,
-  config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) ?? {},
+  config:
+    JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) ?? DEFAULT_CONFIG,
   songs: [
     {
       id: 1,
@@ -393,26 +401,25 @@ const app = {
       const targetElement = e.target;
       const songNode = targetElement.closest('.song-item:not(.is-active)');
 
-      // Handle when clicking on the inactive song
-      if (songNode) {
-        _this.currentIndex = Number(songNode.dataset.index);
-        _this.setConfig('currentIndex', _this.currentIndex);
-        _this.loadCurrentSong();
-        audio.play();
+      if (targetElement.closest('.more-button')) {
+        // Handle more button
       } else {
-        // Is active song
-        if (!audio.paused) {
-          audio.pause();
-        } else {
+        // Handle when clicking on the inactive song
+        if (songNode) {
+          _this.currentIndex = Number(songNode.dataset.index);
+          _this.setConfig('currentIndex', _this.currentIndex);
+          _this.loadCurrentSong();
           audio.play();
+        } else {
+          // Is active song
+          if (!audio.paused) {
+            audio.pause();
+          } else {
+            audio.play();
+          }
         }
+        _this.render();
       }
-
-      _this.render();
-
-      // // Handle when clicking on the song option
-      // if (e.target.closest('.more-button')) {
-      // }
     };
   },
   scrollToActiveSong() {
@@ -434,13 +441,22 @@ const app = {
     this.isReplay = this.config.isReplay;
   },
   loadCurrentSong() {
-    playerControlsThumbnail.style.backgroundImage = `url('${this.currentSong.image}')`;
+    let currentWindowSize = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    // To get quality image
+    let thumbnailImage =
+      currentWindowSize > 739
+        ? this.currentSong.image
+        : this.currentSong.image.replace(/w94/, 'w600');
+
+    playerControlsThumbnail.style.backgroundImage = `url('${thumbnailImage}')`;
     playerControlsSongTitle.textContent = this.currentSong.name;
     playerControlsSongSubTitle.innerHTML = this.renderSingers(this.currentSong);
-    this.songCurrentTime &&
-      (playerControlsSongCurrentTime.textContent = toHHMMSS(
-        this.songCurrentTime
-      ));
+    playerControlsSongCurrentTime.textContent = toHHMMSS(
+      this.songCurrentTime ?? 0
+    );
     playerControlsSongDuration.textContent = toHHMMSS(
       this.currentSong.duration
     );
