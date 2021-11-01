@@ -116,6 +116,8 @@ button {
   filter: brightness(0.9);
 }
 
+input,
+input:focus,
 input::placeholder {
   font-size: 1.4rem;
   color: var(--color-text-primary);
