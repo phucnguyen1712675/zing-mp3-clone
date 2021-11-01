@@ -68,7 +68,7 @@ const app = {
       singers: ['MONSTAR'],
       path: './assets/audio/co-hen-voi-thanh-xuan-MONSTAR.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/cover/e/2/3/f/e23ff2faaa64eebfc57e0acde247f0db.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/e/2/3/f/e23ff2faaa64eebfc57e0acde247f0db.jpg',
       duration: 218,
     },
     {
@@ -77,7 +77,7 @@ const app = {
       singers: ['Noo Phước Thịnh'],
       path: './assets/audio/Yeu-Mot-Nguoi-Sao-Buon-Den-The-Noo-Phuoc-Thinh.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/cover/e/0/c/3/e0c341956a038d66b77275b20168b112.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/e/0/c/3/e0c341956a038d66b77275b20168b112.jpg',
       duration: 299,
     },
     {
@@ -86,7 +86,7 @@ const app = {
       singers: ['Touliver', 'Lê Hiếu', 'SOOBIN'],
       path: './assets/audio/Ngay-Mai-Em-Di-Touliver-Mix-Touliver-Le-Hieu-SOOBIN.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/covers/6/9/695bf88c1edaf82e0bd5e085716e5598_1501654149.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/covers/6/9/695bf88c1edaf82e0bd5e085716e5598_1501654149.jpg',
       duration: 218,
     },
     {
@@ -95,7 +95,7 @@ const app = {
       singers: ['Tiên Tiên', 'Touliver'],
       path: './assets/audio/Em-Khong-The-Tien-Tien-Touliver.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/cover/f/8/f/2/f8f2cd19c3e2e48603a510888807c363.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/f/8/f/2/f8f2cd19c3e2e48603a510888807c363.jpg',
       duration: 251,
     },
     {
@@ -104,7 +104,7 @@ const app = {
       singers: ['Rhymastic'],
       path: './assets/audio/Yeu-5-Rhymastic.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/covers/b/5/b5aa78aa102467e5648160a4ac93df8e_1486467660.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/covers/b/5/b5aa78aa102467e5648160a4ac93df8e_1486467660.jpg',
       duration: 240,
     },
     {
@@ -113,7 +113,7 @@ const app = {
       singers: ['K-ICM', 'Đạt G', 'Masew'],
       path: './assets/audio/Buon-Cua-Anh-K-ICM-Dat-G-Masew.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_png/covers/c/0/c0827e5f2c898fc987e7883151b0476a_1513651595.png',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_png/covers/c/0/c0827e5f2c898fc987e7883151b0476a_1513651595.png',
       duration: 288,
     },
     {
@@ -122,7 +122,7 @@ const app = {
       singers: ['Kay Trần', 'Binz'],
       path: './assets/audio/Phia-Sau-Em-Kay-Tran-Binz.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/avatars/c/3/c300ae434343b009621c000ef85bc849_1379696767.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/avatars/c/3/c300ae434343b009621c000ef85bc849_1379696767.jpg',
       duration: 224,
     },
     {
@@ -131,7 +131,7 @@ const app = {
       singers: ['Andiez'],
       path: './assets/audio/1-Phut-Andiez.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/covers/f/d/fd4276c762a53e86ec980bb373a5a805_1504774753.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/covers/f/d/fd4276c762a53e86ec980bb373a5a805_1504774753.jpg',
       duration: 376,
     },
     {
@@ -140,7 +140,7 @@ const app = {
       singers: ['Xesi', 'Hoaprox'],
       path: './assets/audio/Vo-Tinh-Xesi-Hoaprox.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/cover/7/9/8/5/798559c5b7d028c351d34a37c7a598cc.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/7/9/8/5/798559c5b7d028c351d34a37c7a598cc.jpg',
       duration: 274,
     },
     {
@@ -149,7 +149,7 @@ const app = {
       singers: ['Bích Phương'],
       path: './assets/audio/nam-ngu-emru-Bich-Phuong.mp3',
       image:
-        'https://photo-resize-zmp3.zadn.vn/w94_r1x1_jpeg/cover/9/b/e/d/9bed2137143317d0b4a791c8955ae276.jpg',
+        'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/9/b/e/d/9bed2137143317d0b4a791c8955ae276.jpg',
       duration: 255,
     },
   ],
@@ -259,10 +259,8 @@ const app = {
       )`;
   },
   handleEvents() {
-    const _this = this;
-
     // Khi scroll xuống
-    mainPage.onscroll = function () {
+    mainPage.onscroll = () => {
       if (mainPage.scrollTop > 0) {
         pageHeader.classList.add('is-sticky');
       } else {
@@ -287,19 +285,19 @@ const app = {
 
     arrBigPlayBtn.forEach((btn) => {
       // Khi click play
-      btn.onclick = function () {
-        if (_this.isPlaying) {
+      btn.onclick = () => {
+        if (this.isPlaying) {
           audio.pause();
         } else {
           audio.play();
         }
-        _this.render();
+        this.render();
       };
     });
 
     // Khi song play
-    audio.onplay = function () {
-      _this.isPlaying = true;
+    audio.onplay = () => {
+      this.isPlaying = true;
       arrBigPlayBtn.forEach((btn) => {
         btn.classList.add('is-playing');
 
@@ -311,8 +309,8 @@ const app = {
     };
 
     // Khi song pause
-    audio.onpause = function () {
-      _this.isPlaying = false;
+    audio.onpause = () => {
+      this.isPlaying = false;
       arrBigPlayBtn.forEach((btn) => {
         btn.classList.remove('is-playing');
 
@@ -330,16 +328,16 @@ const app = {
     };
 
     // Khi tiến độ bài hát thay đổi
-    audio.ontimeupdate = function () {
+    audio.ontimeupdate = () => {
       if (audio.duration) {
-        _this.songCurrentTime = audio.currentTime;
-        _this.setConfig('songCurrentTime', _this.songCurrentTime);
+        this.songCurrentTime = audio.currentTime;
+        this.setConfig('songCurrentTime', this.songCurrentTime);
 
         playerControlsSongCurrentTime.textContent = toHHMMSS(
-          _this.songCurrentTime
+          this.songCurrentTime
         );
 
-        _this.updateSongProgressValue();
+        this.updateSongProgressValue();
       }
     };
 
@@ -350,46 +348,46 @@ const app = {
     };
 
     // Khi prev bài hát
-    btnPrev.onclick = function () {
-      if (_this.isRandom) {
-        _this.playRandomSong();
+    btnPrev.onclick = () => {
+      if (this.isRandom) {
+        this.playRandomSong();
       } else {
-        _this.prevSong();
+        this.prevSong();
       }
       audio.play();
-      _this.render();
-      _this.scrollToActiveSong();
+      this.render();
+      this.scrollToActiveSong();
     };
 
     // Khi next bài hát
-    btnNext.onclick = function () {
-      if (_this.isRandom) {
-        _this.playRandomSong();
+    btnNext.onclick = () => {
+      if (this.isRandom) {
+        this.playRandomSong();
       } else {
-        _this.nextSong();
+        this.nextSong();
       }
       audio.play();
-      _this.render();
-      _this.scrollToActiveSong();
+      this.render();
+      this.scrollToActiveSong();
     };
 
     // Random bài hát
-    btnRandom.onclick = function () {
-      _this.isRandom = !_this.isRandom;
-      _this.setConfig('isRandom', _this.isRandom);
-      btnRandom.classList.toggle('is-active', _this.isRandom);
+    btnRandom.onclick = () => {
+      this.isRandom = !this.isRandom;
+      this.setConfig('isRandom', this.isRandom);
+      btnRandom.classList.toggle('is-active', this.isRandom);
     };
 
     // Replay bài hát
-    btnReplay.onclick = function () {
-      _this.isReplay = !_this.isReplay;
-      _this.setConfig('isReplay', _this.isReplay);
-      btnReplay.classList.toggle('is-active', _this.isReplay);
+    btnReplay.onclick = () => {
+      this.isReplay = !this.isReplay;
+      this.setConfig('isReplay', this.isReplay);
+      btnReplay.classList.toggle('is-active', this.isReplay);
     };
 
     // Xử lý khi audio end
-    audio.onended = function () {
-      if (_this.isReplay) {
+    audio.onended = () => {
+      if (this.isReplay) {
         audio.play();
       } else {
         btnNext.click();
@@ -397,7 +395,7 @@ const app = {
     };
 
     // Khi click vào song list
-    songListContent.onclick = function (e) {
+    songListContent.onclick = (e) => {
       const targetElement = e.target;
       const songNode = targetElement.closest('.song-item:not(.is-active)');
 
@@ -406,9 +404,9 @@ const app = {
       } else {
         // Handle when clicking on the inactive song
         if (songNode) {
-          _this.currentIndex = Number(songNode.dataset.index);
-          _this.setConfig('currentIndex', _this.currentIndex);
-          _this.loadCurrentSong();
+          this.currentIndex = Number(songNode.dataset.index);
+          this.setConfig('currentIndex', this.currentIndex);
+          this.loadCurrentSong();
           audio.play();
         } else {
           // Is active song
@@ -418,7 +416,7 @@ const app = {
             audio.play();
           }
         }
-        _this.render();
+        this.render();
       }
     };
   },
@@ -441,17 +439,7 @@ const app = {
     this.isReplay = this.config.isReplay;
   },
   loadCurrentSong() {
-    let currentWindowSize = Math.max(
-      document.documentElement.clientWidth,
-      window.innerWidth || 0
-    );
-    // To get quality image
-    let thumbnailImage =
-      currentWindowSize > 739
-        ? this.currentSong.image
-        : this.currentSong.image.replace(/w94/, 'w600');
-
-    playerControlsThumbnail.style.backgroundImage = `url('${thumbnailImage}')`;
+    playerControlsThumbnail.style.backgroundImage = `url('${this.currentSong.image}')`;
     playerControlsSongTitle.textContent = this.currentSong.name;
     playerControlsSongSubTitle.innerHTML = this.renderSingers(this.currentSong);
     playerControlsSongCurrentTime.textContent = toHHMMSS(

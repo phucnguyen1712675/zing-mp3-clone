@@ -250,6 +250,8 @@
 
 .expanded-btn-wrapper {
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .expanded-button .chevron-left-icon {
@@ -437,7 +439,6 @@
   visibility: hidden;
 }
 
-.expanded-btn-wrapper,
 .media-actions-inner,
 .media-actions-container .btn,
 .song-item-left-content__prefix,
